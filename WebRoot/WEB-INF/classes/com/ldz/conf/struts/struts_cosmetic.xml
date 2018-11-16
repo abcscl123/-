@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="cosmetic" extends="struts-default" namespace="/cosmetic">
+		<global-results>
+			<result name="fail">/WEB-INF/page/fail.jsp</result>
+		</global-results>
+	
+		<action name="cosmetic_*" method="{1}" class="com.ldz.action.cosmeticaction.CosmeticAction">
+			<result name="cosmeticUI">/WEB-INF/page/cosmetic.jsp</result>
+			<result name="articleUI">/WEB-INF/page/article.jsp</result>
+			<allowed-methods>cosmeticUI,likeCosmetic,getBeanListLikeName,moreCosmetic,articleUI</allowed-methods>
+		</action>
+		
+		<action name="like_*" method="{1}" class="com.ldz.action.cosmeticaction.LikeAction">
+			<result name="cosmeticUI" type="redirect">/cosmetic/cosmetic_cosmeticUI.action</result>
+			<result name="loginUI" type="redirect">/user/user_userUI.action</result>
+			<allowed-methods>like,notLike</allowed-methods>
+		</action>
+	</package>
+
+</struts>

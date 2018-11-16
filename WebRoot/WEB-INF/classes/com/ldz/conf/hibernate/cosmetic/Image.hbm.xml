@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.ldz.model.cosmetic.Image" table="cosmetic_image" lazy="false">
+		<id name="id" column="id" length="10" type="java.lang.Long">
+			<generator class="native"></generator>
+		</id>
+		<property name="path" column="path" length="100" type="java.lang.String"></property>
+		<property name="is_cosmeticImage" column="is_cosmeticImage" length="1" type="java.lang.Boolean"></property>
+		
+		<many-to-one name="cosmetics" column="cosmetics_id" class="com.ldz.model.cosmetic.Cosmetics"></many-to-one>
+	</class>
+</hibernate-mapping>

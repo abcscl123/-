@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.ldz.model.test.Answer" table="test_answer">
+		<id name="id" column="id" length="10" type="java.lang.Long">
+			<generator class="native"></generator>
+		</id>
+		<property name="answer" column="answer" length="100" type="java.lang.String"></property>
+		<property name="score" column="score" length="10" type="java.lang.Integer"></property>
+		<property name="options" column="options" length="20" type="java.lang.String"></property>
+		
+		<many-to-one name="problem" column="problem_id" class="com.ldz.model.test.Problem"></many-to-one>
+	</class>
+</hibernate-mapping>

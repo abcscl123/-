@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.ldz.model.cosmetic.Cosmetics" table="cosmetic_cosmetics" lazy="false">
+		<id name="id" column="id" length="10" type="java.lang.Long">
+			<generator class="native"></generator>
+		</id>
+		<property name="name" column="name" length="50" type="java.lang.String"></property>
+		<property name="describes" column="describes" length="500" type="java.lang.String"></property>
+		<property name="is_recommend" column="is_recommend" length="1" type="java.lang.Boolean"></property>
+		<property name="time" column="time" length="6" type="java.util.Date"></property>
+		<!-- <property name="like_number" column="like_number" length="10" type="java.lang.Integer"></property> -->
+		
+		<many-to-one name="type" column="type_id" class="com.ldz.model.cosmetic.Type"></many-to-one>
+		<many-to-one name="function" column="function_id" class="com.ldz.model.cosmetic.Functions"></many-to-one>
+		<many-to-one name="result" column="result_id" class="com.ldz.model.test.Results"></many-to-one>
+		
+		<set name="imageSet" table="cosmetic_image">
+			<key column="cosmetics_id"></key>
+			<one-to-many class="com.ldz.model.cosmetic.Image"/>
+		</set>
+		<set name="commentSet" table="cosmetic_comment">
+			<key column="cosmetics_id"></key>
+			<one-to-many class="com.ldz.model.comment.Comment"/>
+		</set>
+		<set name="likeSet" table="cosmetic_like">
+			<key column="cosmetics_id"></key>
+			<one-to-many class="com.ldz.model.cosmetic.Like"/>
+		</set>
+	</class>
+</hibernate-mapping>

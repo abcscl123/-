@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.ldz.model.test.Results" table="test_result" >
+		<id name="id" column="id" length="10" type="java.lang.Long">
+			<generator class="native"></generator>
+		</id>
+		<property name="highest_score" column="highest_score" length="10" type="java.lang.Integer"></property>
+		<property name="minimum_score" column="minimum_score" length="10" type="java.lang.Integer"></property>
+		<property name="answer" column="answer" length="500" type="java.lang.String"></property>
+		<property name="proposal" column="proposal" length="1000" type="java.lang.String"></property>
+
+		<many-to-one name="number" column="number_id" class="com.ldz.model.test.Number"></many-to-one>
+		
+		<set name="cosmeticsSet" table="cosmetic_cosmetics">
+			<key column="result_id"></key>
+			<one-to-many class="com.ldz.model.cosmetic.Cosmetics"/>
+		</set>
+	</class>
+</hibernate-mapping>

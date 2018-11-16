@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.ldz.model.comment.Comment" table="comment_comment">
+		<id name="id" column="id" length="10" type="java.lang.Long">
+			<generator class="native"></generator>
+		</id>
+		<property name="content" column="content" length="500" type="java.lang.String"></property>
+		<property name="time" column="time" length="6" type="java.util.Date"></property>
+		<property name="like_number" column="like_number" length="10" type="java.lang.Integer"></property>
+		
+		<many-to-one name="user" column="user_id" class="com.ldz.model.user.User"></many-to-one>
+		<many-to-one name="cosmetics" column="cosmetics_id" class="com.ldz.model.cosmetic.Cosmetics"></many-to-one>
+		
+		<set name="replySet" table="comment_reply">
+			<key column="comment_id"></key>
+			<one-to-many class="com.ldz.model.comment.Reply"/>
+		</set>
+		<set name="imageSet" table="comment_image">
+			<key column="comment_id"></key>
+			<one-to-many class="com.ldz.model.comment.Image"/>
+		</set>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.ldz.model.test.Number" table="test_number" >
+		<id name="id" column="id" length="10" type="java.lang.Long">
+			<generator class="native"></generator>
+		</id>
+		<property name="describes" column="describes" length="500" type="java.lang.String"></property>
+		<property name="is_show" column="is_show" length="1" type="java.lang.Boolean"></property>
+		
+		<set name="resultSet" table="test_result">
+			<key column="number_id"></key>
+			<one-to-many class="com.ldz.model.test.Results"/>
+		</set>
+		<set name="problemSet" table="test_problem">
+			<key column="number_id"></key>
+			<one-to-many class="com.ldz.model.test.Problem"/>
+		</set>
+	</class>
+</hibernate-mapping>

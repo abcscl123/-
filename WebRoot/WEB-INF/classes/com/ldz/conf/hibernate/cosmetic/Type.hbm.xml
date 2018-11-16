@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.ldz.model.cosmetic.Type" table="cosmetic_type">
+		<id name="id" column="id" length="10" type="java.lang.Long">
+			<generator class="native"></generator>
+		</id>
+		<property name="name" column="name" length="50" type="java.lang.String"></property>
+		
+		<set name="cosmeticsSet" table="cosmetic_cosmetics">
+			<key column="type_id"></key>
+			<one-to-many class="com.ldz.model.cosmetic.Cosmetics"/>
+		</set>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx.xsd">
+     
+	<!-- 加载properties -->
+	<context:property-placeholder ignore-unresolvable="true" location="classpath:com/ldz/conf/properties/jdbc.properties"/>
+	<!-- c3p0数据源配置 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${driverClass}"></property>
+		<property name="jdbcUrl" value="${jdbcUrl}"></property>
+		<property name="user" value="${user}"></property>
+		<property name="password" value="${password}"></property>
+	</bean>
+	
+	<!-- 配置hibernate相关属性 -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<!-- 注入连接池 -->
+		<property name="dataSource" ref="dataSource"/>
+		<!-- 配置hibernate的属性 -->
+		<property name="hibernateProperties">
+			<props>
+				<!-- 此处编写时特别注意不要打错了否则数据创建失败MySQL使用的是5.0版本以上org.hibernate.dialect.MySQL5Dialect -->
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="current_session_context_class">thread</prop>
+			</props>
+		</property>
+		
+		<!--加载hibernate中的映射文件 -->
+		<property name="mappingResources">
+			<list>
+				<!-- 化妆品 -->
+				<value>com/ldz/conf/hibernate/cosmetic/Cosmetics.hbm.xml</value>
+				<value>com/ldz/conf/hibernate/cosmetic/Type.hbm.xml</value>
+				<value>com/ldz/conf/hibernate/cosmetic/Functions.hbm.xml</value>
+				<value>com/ldz/conf/hibernate/cosmetic/Image.hbm.xml</value>
+				<value>com/ldz/conf/hibernate/cosmetic/Like.hbm.xml</value>
+				
+				<!-- 评论 -->
+				<value>com/ldz/conf/hibernate/comment/Comment.hbm.xml</value>
+				<value>com/ldz/conf/hibernate/comment/Image.hbm.xml</value>
+				<value>com/ldz/conf/hibernate/comment/Reply.hbm.xml</value>
+				
+				<!-- 测试 -->
+				<value>com/ldz/conf/hibernate/test/Answer.hbm.xml</value>
+				<value>com/ldz/conf/hibernate/test/Number.hbm.xml</value>
+				<value>com/ldz/conf/hibernate/test/Problem.hbm.xml</value>
+				<value>com/ldz/conf/hibernate/test/Result.hbm.xml</value>
+
+				<!-- 用户 -->
+				<value>com/ldz/conf/hibernate/user/Collection.hbm.xml</value>
+				<value>com/ldz/conf/hibernate/user/Note.hbm.xml</value>
+				<value>com/ldz/conf/hibernate/user/User.hbm.xml</value>
+				
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<!-- 开启注解事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	<!-- 配置自动扫描的包     开启注解 -->
+	<context:component-scan base-package="com.ldz">
+	</context:component-scan>
+ </beans>

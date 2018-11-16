@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="test" extends="struts-default" namespace="/test">
+		<global-results>
+			<result name="fail">/WEB-INF/page/fail.jsp</result>
+		</global-results>
+	
+		<action name="test_*" method="{1}" class="com.ldz.action.testaction.TestAction">
+			<result name="testUI">/WEB-INF/page/test.jsp</result>
+			<allowed-methods>testUI</allowed-methods>
+		</action>
+		
+		<!-- <action name="answer_*" method="{1}" class="com.ldz.action.testaction.AnswerAction">
+			<result name="success">/WEB-INF/page/success.jsp</result>
+			<allowed-methods>getAnswer</allowed-methods>
+		</action>
+		<action name="number_*" method="{1}" class="com.ldz.action.testaction.NumberAction">
+			<result name="success">/WEB-INF/page/success.jsp</result>
+			<allowed-methods>getAnswer</allowed-methods>
+		</action>
+		<action name="problem_*" method="{1}" class="com.ldz.action.testaction.ProblemAction">
+			<result name="success">/WEB-INF/page/success.jsp</result>
+			<allowed-methods>getAnswer</allowed-methods>
+		</action>
+		<action name="result_*" method="{1}" class="com.ldz.action.testaction.ResultAction">
+			<result name="success">/WEB-INF/page/success.jsp</result>
+			<allowed-methods>getAnswer</allowed-methods>
+		</action> -->
+	</package>
+
+</struts>

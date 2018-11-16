@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+     
+     <!-- 这两个不知道为什么自动注入失败 -->
+     <bean id="problemAction" class="com.ldz.action.testaction.ProblemAction">
+     	<property name="service" ref="problemServiceImpl"></property>
+     </bean>
+     
+     <bean id="resultAction" class="com.ldz.action.testaction.ResultAction">
+     	<property name="service" ref="resultServiceImpl"></property>
+     </bean>
+ </beans>

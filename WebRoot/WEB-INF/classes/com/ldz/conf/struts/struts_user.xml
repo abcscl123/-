@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="user" extends="struts-default" namespace="/user">
+		<global-results>
+			<result name="fail">/WEB-INF/page/fail.jsp</result>
+		</global-results>
+	
+		<action name="user_*" method="{1}" class="com.ldz.action.useraction.UserAction">
+			<!-- 页面跳转 -->
+			<result name="loginUI">/WEB-INF/page/login.jsp</result>
+			<result name="registerUI">/WEB-INF/page/register.jsp</result>
+			<result name="userUI">/WEB-INF/page/user.jsp</result>
+			<result name="changeUI">/WEB-INF/page/change.jsp</result>
+			<result name="indexUI">/WEB-INF/page/index.jsp</result>
+			<result name="searchUI">/WEB-INF/page/search.jsp</result>
+			
+			<result name="index">/WEB-INF/page/index.jsp</result>
+			<result name="register">/WEB-INF/page/login.jsp</result>
+			<result name="change">/WEB-INF/page/user.jsp</result>
+			<allowed-methods>loginUI,registrUI,userUI,changeUI,indexUI,searchUI,login,register,change</allowed-methods>
+		</action>
+	</package>
+</struts>

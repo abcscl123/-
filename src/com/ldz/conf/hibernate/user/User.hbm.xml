@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.ldz.model.user.User" table="user_user">
+		<id name="id" column="id" length="10" type="java.lang.Long">
+			<generator class="native"></generator>
+		</id>
+		<property name="name" column="name" length="16" type="java.lang.String"></property>
+		<property name="password" column="password" length="16" type="java.lang.String"></property>
+		<property name="type" column="type" length="10" type="java.lang.String"></property>
+		<property name="nickname" column="nickname" length="16" type="java.lang.String"></property>
+		<property name="phone" column="phone" length="11" type="java.lang.String"></property>
+		<property name="eamil" column="eamil" length="30" type="java.lang.String"></property>
+		<property name="birthday" column="birthday" length="6" type="java.util.Date"></property>
+		<property name="sex" column="sex" length="1" type="java.lang.Boolean"></property>
+		<property name="path" column="path" length="100" type="java.lang.String"></property>
+		
+		<set name="commentSet" table="cosmetic_comment">
+			<key column="user_id"></key>
+			<one-to-many class="com.ldz.model.comment.Comment"/>
+		</set>
+		<set name="collectionSet" table="user_collection">
+			<key column="user_id"></key>
+			<one-to-many class="com.ldz.model.user.Collection"/>
+		</set>
+		<set name="noteSet" table="user_note">
+			<key column="user_id"></key>
+			<one-to-many class="com.ldz.model.user.Note"/>
+		</set>
+		<set name="likeSet" table="cosmetic_like">
+			<key column="user_id"></key>
+			<one-to-many class="com.ldz.model.cosmetic.Like"/>
+		</set>
+	</class>
+</hibernate-mapping>
